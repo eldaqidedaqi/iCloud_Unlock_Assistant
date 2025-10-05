@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iCloud Unlock Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        nav {
+            background: #005a99;
+            display: flex;
+            justify-content: center;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+        nav button:hover,
+        nav button.active {
+            background-color: #004070;
+        }
+        main {
+            max-width: 900px;
+            margin: 1rem auto;
+            background: white;
+            padding: 1.5rem;
+            box-shadow: 0 0 10px rgb(0 0 0 / 0.1);
+            border-radius: 8px;
+            min-height: 60vh;
+        }
+        .hidden {
+            display: none;
+        }
+        h2 {
+            color: #007acc;
+        }
+        a {
+            color: #005a99;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .dns-instructions, .id-instructions, .tools-list {
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+        .download-link {
+            background-color: #007acc;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            display: inline-block;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>iCloud Unlock Assistant</header>
+    <nav>
+        <button id="btn-home" class="active">Inicio</button>
+        <button id="btn-dns">DNS Bypass</button>
+        <button id="btn-appleid">Apple ID y Find My</button>
+        <button id="btn-abm">Dispositivos Supervisados (ABM)</button>
+        <button id="btn-tools">Herramientas Open Source</button>
+        <button id="btn-support">Soporte y FAQ</button>
+    </nav>
+    <main>
+        <section id="home-section">
+            <h2>Bienvenido</h2>
+            <p>Esta aplicación web ofrece métodos legales y gratuitos para realizar bypass o desbloqueo parcial de iCloud en dispositivos Apple. Edúquese en los procesos, comprenda las limitaciones y utilice las herramientas con responsabilidad.</p>
+            <p><strong>Advertencia:</strong> Esta app no realiza desbloqueo permanente completo. Para desbloqueos definitivos consulte servicios profesionales autorizados.</p>
+        </section>
+
+        <section id="dns-section" class="hidden">
+            <h2>DNS Bypass</h2>
+            <p>El DNS Bypass permite un acceso limitado y temporal a funciones básicas del dispositivo iOS sin eliminar el bloqueo de activación.</p>
+            <p class="dns-instructions">
+                Para usarlo:<br/>
+                1. Conecta tu dispositivo a una red Wi-Fi.<br/>
+                2. Cambia la configuración de DNS de la red Wi-Fi a uno de los servidores DNS recomendados según tu región.<br/>
+                3. Reinicia la conexión y accede a ciertas funciones limitadas.<br/>
+                <strong>Limita funcionalidades y no elimina el bloqueo.</strong>
+            </p>
+            <h3>Servidores DNS recomendados</h3>
+            <ul>
+                <li>Estados Unidos/Norteamérica: 104.154.51.7</li>
+                <li>Europa: 104.155.28.90</li>
+                <li>Asia: 104.155.220.58</li>
+                <li>Otros: 78.109.17.60</li>
+            </ul>
+            <button onclick="copyDns('104.154.51.7')">Copiar DNS US</button>
+            <button onclick="copyDns('104.155.28.90')">Copiar DNS Europa</button>
+            <button onclick="copyDns('104.155.220.58')">Copiar DNS Asia</button>
+            <button onclick="copyDns('78.109.17.60')">Copiar DNS Otros</button>
+        </section>
+
+        <section id="appleid-section" class="hidden">
+            <h2>Apple ID y Find My</h2>
+            <p>Si tienes acceso a la cuenta Apple ID que activó el dispositivo, puedes eliminar el bloqueo de activación de forma legítima.</p>
+            <p class="id-instructions">
+                Para ello:<br/>
+                1. Ingresa en <a href="https://www.icloud.com/find" target="_blank" rel="noopener">icloud.com/find</a> con el Apple ID.<br/>
+                2. Accede a "Todos mis dispositivos".<br/>
+                3. Selecciona el dispositivo bloqueado.<br/>
+                4. Usa la opción "Eliminar de la cuenta" para desvincular.<br/>
+                5. El dispositivo se desbloqueará tras conexión a internet.
+            </p>
+            <p>
+                Si has olvidado tu contraseña, revisa los métodos de recuperación de Apple en <a href="https://iforgot.apple.com" target="_blank" rel="noopener">iforgot.apple.com</a>.
+            </p>
+        </section>
+
+        <section id="abm-section" class="hidden">
+            <h2>Dispositivos Supervisados (ABM)</h2>
+            <p>Para dispositivos gestionados mediante Apple Business Manager (ABM), existe un procedimiento legal para eliminar el bloqueo de activación.</p>
+            <p>
+                Si eres administrador IT, puedes utilizar la consola de ABM para liberar dispositivos siguiendo las políticas de la organización.
+            </p>
+            <p>Consulta la documentación oficial de Apple para más detalles: <a href="https://developer.apple.com/documentation/devicemanagement/activation-lock-bypass-code-command" target="_blank" rel="noopener">activation-lock-bypass-code-command</a>.</p>
+        </section>
+
+        <section id="tools-section" class="hidden">
+            <h2>Herramientas Open Source</h2>
+            <p>A continuación algunas herramientas con código abierto que ofrecen bypass parcial o acceso avanzado en ciertos modelos:</p>
+            <ul class="tools-list">
+                <li><strong>checkra1n:</strong> Jailbreak para dispositivos con procesadores A7 a A11 que puede ayudar en procesos de bypass.</li>
+                <li><strong>libimobiledevice:</strong> Conjunto de herramientas para interacción avanzada con dispositivos iOS.</li>
+                <li><strong>iOS_ActivationBypass:</strong> Proyecto en GitHub que muestra técnicas para bypass en dispositivos antiguos.</li>
+            </ul>
+            <p>Nota: Estas herramientas requieren conocimientos avanzados y sólo funcionan en modelos y versiones específicas.</p>
+            <p>
+                Enlaces útiles:<br/>
+                <a href="https://checkra.in" target="_blank" rel="noopener">checkra1n</a><br/>
+                <a href="https://libimobiledevice.org" target="_blank" rel="noopener">libimobiledevice</a><br/>
+                <a href="https://github.com/wrcsubers/iOS_ActivationBypass" target="_blank" rel="noopener">iOS Activation Bypass GitHub</a>
+            </p>
+        </section>
+
+        <section id="support-section" class="hidden">
+            <h2>Recursos y Soporte</h2>
+            <p><strong>Preguntas frecuentes:</strong></p>
+            <ul>
+                <li>¿Estos métodos garantizan desbloqueo permanente? No, la mayoría son temporales o limitados.</li>
+                <li>¿Qué riesgos existen? Riesgos de seguridad, pérdida de garantía y posibles problemas legales si no se usan bien.</li>
+                <li>¿Dónde obtengo ayuda? Foros especializados como r/jailbreak, comunidades de iOS hackers, y soporte Apple oficial.</li>
+            </ul>
+            <p>Consulta también la legislación local para asegurarte del uso correcto y legal.</p>
+            <p>Contacto para soporte: soporte@icloudunlockassistant.com (simulado)</p>
+        </section>
+    </main>
+    <script>
+        // Navegación simple para mostrar sección y marcar botón activo
+        const buttons = document.querySelectorAll('nav button');
+        const sections = {
+            'btn-home': 'home-section',
+            'btn-dns': 'dns-section',
+            'btn-appleid': 'appleid-section',
+            'btn-abm': 'abm-section',
+            'btn-tools': 'tools-section',
+            'btn-support': 'support-section'
+        };
+        function setActive(buttonId) {
+            buttons.forEach(b => b.classList.remove('active'));
+            document.getElementById(buttonId).classList.add('active');
+            Object.values(sections).forEach(id => document.getElementById(id).classList.add('hidden'));
+            document.getElementById(sections[buttonId]).classList.remove('hidden');
+        }
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => setActive(btn.id));
+        });
+        // Copiar DNS al portapapeles para facilidad
+        function copyDns(dns) {
+            navigator.clipboard.writeText(dns).then(() => {
+                alert('DNS copiado: ' + dns);
+            });
+        }
+    </script>
+</body>
+</html>
